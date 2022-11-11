@@ -10,6 +10,9 @@ import { RentalComponent } from './components/rental/rental.component';
 import { CustomerComponent } from './components/customer/customer.component';
 
 import { NaviComponent } from './components/navi/navi.component';
+import { CarDetailPageComponent } from './components/car-detail-page/car-detail-page.component';
+
+
 
 
 
@@ -24,7 +27,10 @@ import { NaviComponent } from './components/navi/navi.component';
     BrandComponent,
     RentalComponent,
     CustomerComponent,
-    NaviComponent
+    NaviComponent,
+    CarDetailPageComponent
+    
+   
   ],
   imports: [
     BrowserModule,

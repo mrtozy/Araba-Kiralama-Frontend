@@ -1,0 +1,10 @@
+import { Car } from "./car";
+
+export interface CarImage{
+
+    carImageId:number;
+    carId:number;
+    imagePath:string;
+    date:Date;
+    c:Car[];
+}
