@@ -9,6 +9,7 @@ import { CarDetailDto } from 'src/app/models/car/CarDetailDto';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -37,7 +38,10 @@ export class CarService {
       
       
   getCarDetailsByCarId(carId: number): Observable<SingleResponseModel<CarDetailDto>> {
-    let carDetailPath = this.apiUrl + "Cars/getbyid?carId=" + carId;
+    let carDetailPath = this.apiUrl + "Cars/getbyid?Id=" + carId;
     return this.httpClient.get<SingleResponseModel<CarDetailDto>>(carDetailPath);
   }
+ 
+  
+
 }

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Observable } from 'rxjs';
+import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 import {Customer} from "../../models/customer/customer";
 import {CustomerService} from "../../services/customer/customer.service";
 
@@ -23,5 +25,7 @@ export class CustomerComponent implements OnInit {
             this.dataLoaded = true;
         });
     }
+    
+ 
 
 }

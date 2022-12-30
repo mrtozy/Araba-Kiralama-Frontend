@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder,FormGroup, Validators   } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
 import { CarDetailDto } from 'src/app/models/car/CarDetailDto';
 
 import { CarImage } from 'src/app/models/car/carImage';
+import { Customer } from 'src/app/models/customer/customer';
+import { Rental } from 'src/app/models/rental/rental';
 import { CarImageService } from 'src/app/services/car-image-service/car-image-service';
 import { CarService } from 'src/app/services/car/car.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
+import { RentalService } from 'src/app/services/rental/rental.service';
 
 @Component({
   selector: 'app-car-detail-page',
@@ -16,23 +21,31 @@ export class CarDetailPageComponent implements OnInit {
 
   carDetail:CarDetailDto;
   cars: Car[] = [];
+  addFormGroup: FormGroup;
   carImages:CarImage[];
   dataLoaded = false;
   currentImage: CarImage;
+  customers: Customer[] = [];
   imageUrl = "https://localhost:7026"
+ 
+ 
+  currentCarId: number;
 
-  constructor(private carDetailService:CarService, private carImageService:CarImageService,
-     private activatedRoute:ActivatedRoute) { }
+  constructor(private carDetailService:CarService, private carImageService:CarImageService,  
+    
+     private activatedRoute:ActivatedRoute, private customerService: CustomerService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
+     
       this.getImageByCarId(params["carId"]);
       this.getCarById(params["carId"]);
+
       
 
       this.getCarDetailsByCarId(params["carId"]);
     
-     //buralara yarın bak
+   
     
    
     })
@@ -49,6 +62,7 @@ export class CarDetailPageComponent implements OnInit {
     this.carImageService.getByCarId(carId).subscribe(response => {
       this.carImages = response.data;
       this.dataLoaded = true;
+      
     })
   }
   getCarDetailsByCarId(carId:number){
@@ -63,6 +77,7 @@ export class CarDetailPageComponent implements OnInit {
       return '';
     }
   }
+  
 
   getCurrentImageClass(image: CarImage) {
     if (this.carImages[0] == image) {
@@ -87,5 +102,12 @@ export class CarDetailPageComponent implements OnInit {
       return path;
     }
   }
+ 
 
+
+  getCurrentCustomer() {
+    this.customerService.getCustomersDetail().subscribe(response => {
+      this.customers = response.data;
+    });
+  }
 }

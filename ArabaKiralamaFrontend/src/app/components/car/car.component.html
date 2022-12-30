@@ -1,6 +1,17 @@
 <div *ngIf="dataLoaded==false" class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
+  
+    <div class="form-group">
+      <label for="exampleInputEmail1">Arama</label>
+      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText"  aria-describedby="emailHelp" placeholder="">
+      
+    </div>
+    <div *ngIf="filterText.length>2" class="alert alert-success">
+      {{filterText}} aradınız
+    </div>
+  
+  
   <table class="table">
   <thead>
   <tr>
@@ -15,7 +26,7 @@
     
   </tr>
   </thead>
-  <tr routerLink="/cars/car-detail-page/{{car.carId}}" *ngFor="let car of cars">
+  <tr routerLink="/cars/car-detail-page/{{car.carId}}" *ngFor="let car of cars | filterCarPipe:filterText">
 
     <td>{{ car.carId }}</td>
     <td>{{ car.brandName }}</td>

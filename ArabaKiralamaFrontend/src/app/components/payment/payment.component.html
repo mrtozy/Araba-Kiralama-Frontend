@@ -1,0 +1,47 @@
+
+<div *ngIf="carDataUpdated==true" class='subject text-primary'>Rent A <br> Car <br> #{{car.carId}}</div>
+
+<div *ngIf="carDataUpdated==true && carImagesUpdated==true" class='checkout'>
+  <div class='order'>
+    <h2 class="text-danger">Araba</h2>
+    
+    <img >
+    <h4>{{car.modelYear}} - {{car.brandName}}</h4>
+    <h5>Günlük fiyat - {{car.dailyPrice | currency}}</h5> <br>
+    <h5>Kira Günü</h5><h4>{{datesDiff}}</h4>
+    <h5 class='total'>Toplam</h5><h1>{{total | currency}}</h1>
+  </div>
+  <h2 class="text-danger">Ödeme</h2>
+  <div id='payment' class='payment'>
+    <div class='card'>
+      <div class='card-content'>
+      
+        <h5>Card Number</h5>
+        <h6 >{{cardNumber}}</h6>
+        <h5>Expiration<span>CVC</span></h5>
+        <h6 >{{expiryMonthAndYear}}<span>{{cvv}}</span></h6>
+      </div>
+      <div class='wave'></div>
+    </div>
+      <div class='card-form'>
+        <p class='field'>
+        
+          <input type='text' [(ngModel)]="cardOwner" id='cardnumber' name='cardnumber' placeholder='Kart Sahibi' value="ali veli" pattern='\d*' title='Card Number' />
+        </p>
+          <p class='field'>
+        
+          <input type='text' [(ngModel)]="cardNumber" id='cardnumber' name='cardnumber' placeholder='1234 5678 9123 4567' value="1234 5678 9123 4567" pattern='\d*' title='Card Number' />
+        </p>
+          <p class='field space'>
+         
+            <input [(ngModel)]="expiryMonthAndYear" type='text' id='cardexpiration' name='cardexpiration' placeholder="MM / YYYY" value="06 / 1987" pattern="\d*" title='Card Expiration Date' />
+        </p>
+          <p class='field'>
+         
+            <input [(ngModel)]="cvv" type='text' id='cardcvc' name='cardcvc' placeholder="123"  value="123" pattern="\d*" title='CVC Code' />
+        </p>
+        <button (click)="pay()" class='button-cta bg-danger border-danger' title='Confirm your purchase'><span>Ödeme</span></button>
+      </div>
+  </div>
+
+

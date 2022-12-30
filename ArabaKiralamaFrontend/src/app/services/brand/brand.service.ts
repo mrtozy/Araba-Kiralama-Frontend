@@ -14,12 +14,19 @@ import { Car } from 'src/app/models/car/car';
     providedIn: 'root'
 })
 export class BrandService {
-    apiUrl = 'https://localhost:7026/api/Brands/getall';
+   
+    apiUrl = 'https://localhost:7026/api/';
 
     constructor(private httpClient: HttpClient) { }
-
-    getBrands(): Observable<ListResponseModel<Brand>>{
-        return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl);
-    }
    
+    getBrands(): Observable<ListResponseModel<Brand>>{
+        let newPath=this.apiUrl+"Brands/getall"
+        return this.httpClient.get<ListResponseModel<Brand>>(newPath);
+
+       
+    }
+    getBrandsFillter(brandId: number) : Observable<ListResponseModel<Brand>>{
+        let newPath=this.apiUrl+"Colors/getbyid?id="+brandId
+        return this.httpClient.get<ListResponseModel<Brand>>(newPath);
+    }
 }
